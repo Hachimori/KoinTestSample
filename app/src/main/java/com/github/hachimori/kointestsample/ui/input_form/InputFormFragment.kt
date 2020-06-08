@@ -6,18 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.hachimori.kointestsample.R
 import com.github.hachimori.kointestsample.network.ApiResponse
-import com.github.hachimori.kointestsample.network.GitHubService
-import com.github.hachimori.kointestsample.repositories.GitHubRepository
 import com.github.hachimori.kointestsample.ui.repository_detail.RepositoryDetailFragmentArgs
-import com.github.hachimori.kointestsample.usecases.GetUserUsecase
-import com.github.hachimori.kointestsample.usecases.GetUsersRepositoryListUsecase
-import com.github.hachimori.kointestsample.utils.doubleArgViewModelFactory
 import kotlinx.android.synthetic.main.input_form_fragment.*
+import org.koin.android.viewmodel.ext.android.sharedViewModel
 import timber.log.Timber
 
 class InputFormFragment : Fragment() {
@@ -26,7 +21,7 @@ class InputFormFragment : Fragment() {
         fun newInstance() = InputFormFragment()
     }
 
-    private lateinit var viewModel: InputFormViewModel
+    val viewModel: InputFormViewModel by sharedViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,12 +32,6 @@ class InputFormFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-        val factory = doubleArgViewModelFactory(::InputFormViewModel) (
-            GetUserUsecase(GitHubRepository(GitHubService.getService())),
-            GetUsersRepositoryListUsecase(GitHubRepository(GitHubService.getService()))
-        )
-        viewModel = ViewModelProvider(this, factory).get(InputFormViewModel::class.java)
 
         viewModel.user.observe(viewLifecycleOwner, Observer { response ->
             when (response) {

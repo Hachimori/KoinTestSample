@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'koin'
 apply plugin: 'androidx.navigation.safeargs'
 
 android {
@@ -52,6 +53,12 @@ dependencies {
 
     // Timber
     implementation 'com.jakewharton.timber:timber:4.7.1'
+
+    // Koin
+    implementation "org.koin:koin-core:$koin_version"
+    implementation "org.koin:koin-core-ext:$koin_version"
+    implementation "org.koin:koin-android-viewmodel:$koin_version"
+    testImplementation "org.koin:koin-test:$koin_version"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
