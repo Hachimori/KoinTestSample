@@ -1,4 +1,4 @@
-package com.github.hachimori.kointestsample
+package com.github.hachimori.kointestsample.test
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

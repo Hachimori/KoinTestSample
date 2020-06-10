@@ -22,7 +22,7 @@ class MainActivityTest {
 
     @Rule
     @JvmField
-    var activityTestRule = ActivityScenarioRule(MainActivity::class.java)
+    var testRule = ActivityScenarioRule(MainActivity::class.java)
 
     @Test
     fun mainActivityTest() {
@@ -47,5 +47,7 @@ class MainActivityTest {
 
         onView(withId(R.id.repository_detail_repository))
             .check(matches(withText("AndroidSamples")))
+
+        SystemClock.sleep(3000)
     }
 }
