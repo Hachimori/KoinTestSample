@@ -11,7 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.hachimori.kointestsample.R
 import com.github.hachimori.kointestsample.network.ApiResponse
 import com.github.hachimori.kointestsample.ui.repository_detail.RepositoryDetailFragmentArgs
-import kotlinx.android.synthetic.main.input_form_fragment.*
+import kotlinx.android.synthetic.main.fragment_input_form.*
+
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 import timber.log.Timber
 
@@ -27,7 +28,7 @@ class InputFormFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.input_form_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_input_form, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
