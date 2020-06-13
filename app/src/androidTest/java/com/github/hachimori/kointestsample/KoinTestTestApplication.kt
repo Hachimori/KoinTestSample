@@ -1,7 +1,7 @@
 package com.github.hachimori.kointestsample
 
 import android.app.Application
-import com.github.hachimori.kointestsample.mock.getMockedGitHubService
+import com.github.hachimori.kointestsample.mock.network.getMockedGitHubService
 import com.github.hachimori.kointestsample.repositories.GitHubRepository
 import com.github.hachimori.kointestsample.ui.input_form.InputFormViewModel
 import com.github.hachimori.kointestsample.ui.repository_detail.RepositoryDetailViewModel

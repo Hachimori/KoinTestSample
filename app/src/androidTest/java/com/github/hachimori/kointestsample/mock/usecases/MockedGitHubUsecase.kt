@@ -1,24 +1,32 @@
-package com.github.hachimori.kointestsample.mock
+package com.github.hachimori.kointestsample.mock.usecases
 
 import com.github.hachimori.kointestsample.model.*
-import com.github.hachimori.kointestsample.network.GitHubService
+import com.github.hachimori.kointestsample.usecases.GetRepositoryCommitListUsecase
+import com.github.hachimori.kointestsample.usecases.GetUserUsecase
+import com.github.hachimori.kointestsample.usecases.GetUsersRepositoryListUsecase
 import io.mockk.coEvery
 import io.mockk.mockk
 
-fun getMockedGitHubService(): GitHubService {
-    val mock = mockk<GitHubService>()
+fun getMockedGetUserUsecase(): GetUserUsecase {
+    val mock = mockk<GetUserUsecase>()
 
-    coEvery { mock.getUser("Hachimori") } returns User(
-        login="Hachimori",
-        name="Ben Hachimori",
-        company=null,
-        email=null,
-        bio=null,
-        created_at="",
-        updated_at=""
+    coEvery { mock("Hachimori") } returns User(
+        login = "Hachimori",
+        name = "Ben Hachimori",
+        company = null,
+        email = null,
+        bio = null,
+        created_at = "aa",
+        updated_at = "bbcc"
     )
 
-    coEvery { mock.listRepos("Hachimori") } returns listOf(
+    return mock
+}
+
+fun getMockedGetUsersRepositoryListUsecase(): GetUsersRepositoryListUsecase {
+    val mock = mockk<GetUsersRepositoryListUsecase>()
+
+    coEvery { mock("Hachimori") } returns listOf(
         Repos(
             id=10,
             name="AndroidSamples",
@@ -29,13 +37,19 @@ fun getMockedGitHubService(): GitHubService {
         )
     )
 
-    coEvery { mock.listCommit("Hachimori", "AndroidSamples") } returns listOf(
+    return mock
+}
+
+fun getMockedGetRepositoryCommitListUsecase(): GetRepositoryCommitListUsecase {
+    val mock = mockk<GetRepositoryCommitListUsecase>()
+
+    coEvery { mock("Hachimori", "AndroidSamples") } returns listOf(
         Commits(
             sha="b5308e31b0b10e36acd9e1ae2d1a64604e82e8bd",
             url="https://api.github.com/repos/Hachimori/AndroidSamples/commits/b5308e31b0b10e36acd9e1ae2d1a64604e82e8bd",
-            commit=Commit(
+            commit= Commit(
                 message="Forgot to add some files",
-                committer=Committer(
+                committer= Committer(
                     name="Ben Hachimori",
                     email="ben.shooter2@gmail.com",
                     date="2016-08-17T16:09:19Z"
